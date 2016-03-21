@@ -6,13 +6,11 @@ iOS7 以后Apple推出了NSURLSession ，比原来的NSUonnection更加强大、
 
 首先创建NSURLSession，初始化dataTask 然后 resume 
 ```
-`
   let url = NSURL(string: URLString)
   let config = NSURLSessionConfiguration.defaultSessionConfiguration()
   session = NSURLSession(configuration: config, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
   downloadTask = session .downloadTaskWithURL(url!)
   downloadTask!.resume()
-`
 ```
 下载进度是在代理方法中获取
 ```
