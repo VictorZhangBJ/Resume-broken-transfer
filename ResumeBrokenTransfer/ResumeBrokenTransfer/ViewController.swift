@@ -85,6 +85,17 @@ class ViewController: UIViewController,NSURLSessionDownloadDelegate {
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
         print("下载完毕")
         isDownloading = false
+        
+        print("文件保存位置\(location.path)")
+        if let fileName = downloadTask.response?.suggestedFilename {
+            //转移文件到缓存目录
+            let cache = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).last
+            let filePath = cache! + "/" + fileName;
+            print("filePath = \(filePath)")
+            let fm = NSFileManager.defaultManager()
+            try! fm.moveItemAtPath(location.path!, toPath: filePath)
+            
+        }
     }
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
