@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  ResumeBrokenTransfer
 //
-//  Created by 张佳宾 on 16/3/17.
+//  Created by victor on 16/3/17.
 //  Copyright © 2016年 victor. All rights reserved.
 //
 
@@ -60,26 +60,9 @@ class ViewController: UIViewController,NSURLSessionDownloadDelegate {
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         session = NSURLSession(configuration: config, delegate: self, delegateQueue: NSOperationQueue.mainQueue())
         downloadTask = session .downloadTaskWithURL(url!)
-        
-        //创建任务
-//        let downloadTask = session.downloadTaskWithURL(url!, completionHandler: { (location: NSURL?,response: NSURLResponse?,error: NSError?) -> Void in
-//            let array = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-//            let caches = array.last
-//            let file = caches?.stringByAppendingFormat("/%s", (response?.suggestedFilename)!)
-//            print("file = \(file)")
-//            
-//            let fm = NSFileManager.defaultManager()
-//            try! fm.moveItemAtPath((location?.path)!, toPath: file!)
-//            
-//            
-//            
-//        })
-        
         downloadTask!.resume()
         
-        
     }
-    
     
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
